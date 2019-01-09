@@ -8,7 +8,6 @@ const Api_Key = "8d2de98e089f1c28e1a22fc19a24ef04";
 class App extends React.Component {
 
   state = {
-
     temperature: undefined,
     city: undefined,
     country: undefined,
@@ -26,6 +25,7 @@ class App extends React.Component {
     const api_call = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${Api_Key}`);
     const response = await api_call.json();
     console.log(response);
+    try {
     if(city && country){
       this.setState({
         temperature: response.main.temp,
@@ -34,12 +34,21 @@ class App extends React.Component {
         humidity: response.main.humidity,
         description: response.weather[0].description,
         error: ""
-      })
-    }else{
-      this.setState({
+       })
+      }
+      else {
+       this.setState({
         error: "Please input search values..."
       })
+     }
+     }
+
+    catch(e) {
+      this.setState({
+        error: "There's no such location..."
+      })
     }
+    
   }
 
   render() {
@@ -49,7 +58,7 @@ class App extends React.Component {
       <div>
          <div className="wrapper">
           <div className="main">
-            <div className="container">
+            <div className="container-fluid">
               <div className="row">
                 <div className="col-5 title-container">
                 <Titles />
