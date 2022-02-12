@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://bvcjvc0.github.io",
   "dependencies": {
-    "ajv": "^6.6.2",
+    "ajv": "^6.12.3",
     "bootstrap": "^4.2.1",
     "gh-pages": "^2.0.1",
     "jquery": "^1.9.1",
